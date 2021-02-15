@@ -22,7 +22,7 @@ export default class Contact extends React.Component {
       email: '',
       message: '',
       sent: true,
-      buttonText: 'Ihre nachricht wurde gesendet...',
+      buttonText: 'Ihre nachricht wurde gesendet...'
     });
   }
 
@@ -31,11 +31,12 @@ export default class Contact extends React.Component {
 
     axios({
       method: 'post',
-      url: 'http://localhost:5000',
+      url: 'http://localhost:5000/contact-email',
       data: {
         name: this.state.name,
-        email: this.state.email,
-        message: this.state.message,
+        from: this.state.email,
+        subject: 'Website Contact Form Request',
+        text: this.state.message,
       },
     })
       .then(() => {
