@@ -1,5 +1,4 @@
-# Getting Started with Create React App
-Single-page website with a contact form for a small business that makes windows.
+#Single-page website with a contact form for a small business that makes windows.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
