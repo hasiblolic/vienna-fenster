@@ -3,6 +3,7 @@ import React from 'react';
 export default function Partners() {
   return (
     <div id="partners" className="bg-light">
+    <br /><br />
       <div className="grid-container">
         <div className="grid-container-row">
           <div className="grid-container-col-md-12">

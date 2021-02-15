@@ -49,6 +49,7 @@ export default class Contact extends React.Component {
   render() {
     return (
       <div id="contact" className="grid-container">
+      <br /><br /><br />
         <div className="grid-container-row">
           <div className="center grid-container-col-md-12">
             <h1 className="x-large">Kontakt</h1>

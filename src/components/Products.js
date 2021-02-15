@@ -3,6 +3,7 @@ import shucoImage from '../styles/img/schueco-logo.jpg';
 export default function Products() {
   return (
     <div id="products">
+    <br /><br />
       <div className="grid-container-row">
         <div className="grid-container-col-md-4" />
         <div className="grid-container-col-md-4 center">
