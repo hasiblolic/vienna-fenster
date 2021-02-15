@@ -1,0 +1,194 @@
+// Text Styles
+.x-large {
+    font-size: 4rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  .large {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  .lead {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .center {
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+  }
+  
+  .underline {
+    text-decoration: underline;
+  }
+  
+  .color {
+    &-primary {
+      color: $primary-color;
+    }
+    &-light {
+      color: $light-color;
+    }
+    &-dark {
+      color: $dark-color;
+    }
+  }
+  
+  // Backgrounds
+  .bg {
+    &-primary {
+      @include set-background($primary-color);
+    }
+    &-light {
+      @include set-background($light-color);
+      border: #ccc 1px solid;
+    }
+    &-dark {
+      @include set-background($dark-color);
+    }
+    &-success {
+      @include set-background($success-color);
+    }
+    &-danger {
+      @include set-background($danger-color);
+    }
+    &-white {
+      @include set-background($white-color);
+    }
+  }
+  
+  // Buttons
+  .btn {
+    display: inline-block;
+    background: $light-color;
+    color: #333;
+    padding: 0.4rem 1.3rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    outline: none;
+  
+    &.btn-primary {
+      @include set-background($primary-color);
+      &:hover {
+        background: lighten($primary-color, 5%)
+      }
+    }
+    &.btn-dark {
+      @include set-background($dark-color);
+      &:hover {
+        background: lighten($dark-color, 5%)
+      }
+    }
+    &.btn-success {
+      @include set-background($success-color);
+      &:hover {
+        background: lighten($success-color, 5%)
+      }
+    }
+    &.btn-danger {
+      @include set-background($danger-color);
+      &:hover {
+        background: lighten($danger-color, 5%)
+      }
+    }
+    &:hover {
+      background: lighten($dark-color, 20%);
+      color: #fff;
+    }
+  }
+  
+  .dark-overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 0.7);
+  }
+  
+  // List Elements
+  .list {
+    padding: 1rem;
+    text-align: left;
+    display: block;
+    &-header {
+      color: $primary-color;
+      font-size: 1.2rem;
+      margin-top: 0.1rem;
+    }
+  }
+  
+  // Grid elements
+  $grid-bp-sm: 576;
+  $grid-bp-md: 768;
+  $grid-bp-lg: 992;
+  $grid-bp-xl: 1200;
+  $grid-cols: 12;
+  
+  $map-grid-props: (
+    '': 0,
+    '-sm': $grid-bp-sm,
+    '-md': $grid-bp-md,
+    '-lg': $grid-bp-lg,
+    '-xl': $grid-bp-xl
+  );
+  
+  @mixin create-mq($breakpoint, $min-or-max) {
+    @if($breakpoint == 0) {
+      @content;
+    } @else {
+      @media screen and (#{$min-or-max}-width: $breakpoint * 1px) {
+        @content;
+      }
+    }
+  }
+  
+  @mixin create-col-classes($modifier, $grid-cols, $breakpoint) {
+    @include create-mq($breakpoint, 'min') {
+      &-col#{$modifier}-offset-0 {
+        margin-left: 0;
+      }
+  
+      @for $i from 1 through $grid-cols {
+        &-col#{$modifier}-#{$i} {
+          flex-basis: (100 / ($grid-cols / $i)) * 1%;
+        }
+  
+        &-col#{$modifier}-offset-#{$i} {
+          margin-left: (100 / ($grid-cols / $i)) * 1%;
+        }
+      }
+    }
+  }
+  
+  @each $modifier, $breakpoint in $map-grid-props {
+    @if($modifier == '') {
+      $modifier: '-xs';
+    }
+    @include create-mq($breakpoint - 1, 'max') {
+      .hidden#{$modifier}-down {
+        display: none !important;
+      }
+    }
+  }
+  
+  .grid-container {
+    margin: 1rem;
+    max-width: 100%;
+    &-row {
+      padding: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+  
+    @each $modifier, $breakpoint in $map-grid-props {
+      @include create-col-classes($modifier, $grid-cols, $breakpoint);
+    }
+  }
