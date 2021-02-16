@@ -1,5 +1,5 @@
 # Single-page website with a contact form for a small business that makes windows.
-Can be seen live on heroku -- https://vienna-fenster.herokuapp.com
+## Can be seen live on heroku -- https://vienna-fenster.herokuapp.com
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
